@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="CacheSim"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="CacheSim">
+				<Option output="/mnt/c/Users/molyo/CLionProjects/CacheSim/CacheSim" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/molyo/CLionProjects/CacheSim"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/molyo/CLionProjects/CacheSim/src"/>
+					<Add directory="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachetypes"/>
+					<Add directory="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/test"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 CacheSim"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="CacheSim/fast">
+				<Option output="/mnt/c/Users/molyo/CLionProjects/CacheSim/CacheSim" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/molyo/CLionProjects/CacheSim"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/molyo/CLionProjects/CacheSim/src"/>
+					<Add directory="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachetypes"/>
+					<Add directory="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/test"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 CacheSim/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/molyo/CLionProjects/CacheSim/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachePrint.cpp">
+			<Option target="CacheSim"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachePrint.h">
+			<Option target="CacheSim"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachetypes/FullyAssociative.cpp">
+			<Option target="CacheSim"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachetypes/FullyAssociative.h">
+			<Option target="CacheSim"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachetypes/parent/Cache.cpp">
+			<Option target="CacheSim"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachetypes/parent/Cache.h">
+			<Option target="CacheSim"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/main.cpp">
+			<Option target="CacheSim"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/tracehandler/Tracehandler.cpp">
+			<Option target="CacheSim"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/tracehandler/Tracehandler.h">
+			<Option target="CacheSim"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

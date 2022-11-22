@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachetypes/parent/Cache.cpp
+Cache.h
+/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachetypes/parent/Cache.h
+
+/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachetypes/parent/Cache.h
+iostream
+-
+string
+-
+cmath
+-
+vector
+-
+queue
+-
+filesystem
+-
+fstream
+-
+

@@ -1,0 +1,23 @@
+# ninja log v5
+11	754	6907759150690703	CMakeFiles/CacheSim.dir/src/main.cpp.obj	9128e11a9d1d60d2
+8	397	6907759147126507	CMakeFiles/CacheSim.dir/src/cachetypes/FullyAssociative.cpp.obj	3984e89e6cfbed87
+994	1113	6907065677816249	CacheSim.exe	efa3615a104b8fa3
+2	297	6905040763377347	CMakeFiles/CacheSim.dir/src/cachetypes/Cache.cpp.obj	1b2a5f73a95856dc
+1	212	6907066249525766	build.ninja	ac2374be4954e132
+3	399	6907759147136506	CMakeFiles/CacheSim.dir/src/cachetypes/parent/Cache.cpp.obj	3638163dd0e6c92a
+17	12772	6907051576030967	CMakeFiles/CacheSim.dir/src/test/test.cpp.obj	87b4f3edd59e37f2
+2	11588	6907011337073605	CMakeFiles/CacheSim.dir/src/test/catch.cpp.obj	b5f11e30b56c4e65
+10	899	6907119923180116	CMakeFiles/CacheSim.dir/src/tracehandler/Tracehandler.cpp.obj	bc85dec412a8e4df
+754	885	6907759151980697	../CacheSim.exe	46a31b3a5f238b52
+3	756	6907759305713771	CMakeFiles/CacheSim.dir/src/main.cpp.obj	9128e11a9d1d60d2
+756	889	6907759307023767	../CacheSim.exe	46a31b3a5f238b52
+3	390	6907759573301604	CMakeFiles/CacheSim.dir/src/cachetypes/FullyAssociative.cpp.obj	3984e89e6cfbed87
+390	524	6907759574606074	../CacheSim.exe	46a31b3a5f238b52
+3	378	6907759991784859	CMakeFiles/CacheSim.dir/src/cachetypes/FullyAssociative.cpp.obj	3984e89e6cfbed87
+379	509	6907759993055570	../CacheSim.exe	46a31b3a5f238b52
+3	771	6907761126432619	CMakeFiles/CacheSim.dir/src/main.cpp.obj	9128e11a9d1d60d2
+771	905	6907761127739829	../CacheSim.exe	46a31b3a5f238b52
+2	378	6907763235831098	CMakeFiles/CacheSim.dir/src/cachetypes/FullyAssociative.cpp.obj	3984e89e6cfbed87
+378	514	6907763237156986	../CacheSim.exe	46a31b3a5f238b52
+3	400	6907763328127457	CMakeFiles/CacheSim.dir/src/cachetypes/FullyAssociative.cpp.obj	3984e89e6cfbed87
+401	535	6907763329449817	../CacheSim.exe	46a31b3a5f238b52

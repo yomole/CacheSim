@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/CacheSim.dir/src/cachetypes/parent/Cache.cpp.o CMakeFiles/CacheSim.dir/src/cachetypes/FullyAssociative.cpp.o CMakeFiles/CacheSim.dir/src/tracehandler/Tracehandler.cpp.o CMakeFiles/CacheSim.dir/src/cachePrint.cpp.o CMakeFiles/CacheSim.dir/src/main.cpp.o  -o ../CacheSim 
