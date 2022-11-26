@@ -1,9 +1,9 @@
 /*
  * File Name: FullyAssociative.h
  * Author: Yovany Molina
- * Date: 19/11/22
+ * Date: 22/11/22
  *
- * Description: A class for the fully associative cache organization method in CacheSim.
+ * Description: A class for the set associative cache organization method in CacheSim.
  */
 
 //----------
@@ -28,23 +28,19 @@ using std::istringstream;
 using std::cout;
 using std::endl;
 using std::cerr;
+using std::out_of_range;
 
-//----------
-// CONSTANTS
-//----------
-const unsigned int DEFAULT_SET = 0;
+#ifndef CACHESIM_SETASSOCIATIVE_H
+#define CACHESIM_SETASSOCIATIVE_H
 
-#ifndef CACHESIM_FULLYASSOCIATIVE_H
-#define CACHESIM_FULLYASSOCIATIVE_H
-
-class FullyAssociative : public Cache{
+class SetAssociative : public Cache{
 public:
 
-    FullyAssociative(unsigned int cacheSize, unsigned int blockSize, bool lruCache = true,
+    SetAssociative(unsigned int cacheSize, unsigned int blockSize, unsigned int associativity, bool lruCache = true,
                      unsigned int memBits = 32);
 
     //Class Functions:
     void processRequest(const string& memAddress, bool debug) override;
 };
 
-#endif //CACHESIM_FULLYASSOCIATIVE_H
+#endif //CACHESIM_SETASSOCIATIVE_H

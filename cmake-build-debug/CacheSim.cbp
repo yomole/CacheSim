@@ -88,10 +88,10 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachePrint.cpp">
+		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachePrint/cachePrint.cpp">
 			<Option target="CacheSim"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachePrint.h">
+		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachePrint/cachePrint.h">
 			<Option target="CacheSim"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachetypes/FullyAssociative.cpp">
@@ -100,10 +100,22 @@
 		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachetypes/FullyAssociative.h">
 			<Option target="CacheSim"/>
 		</Unit>
+		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachetypes/SetAssociative.cpp">
+			<Option target="CacheSim"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachetypes/SetAssociative.h">
+			<Option target="CacheSim"/>
+		</Unit>
 		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachetypes/parent/Cache.cpp">
 			<Option target="CacheSim"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/cachetypes/parent/Cache.h">
+			<Option target="CacheSim"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/help/help.cpp">
+			<Option target="CacheSim"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/help/help.h">
 			<Option target="CacheSim"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/molyo/CLionProjects/CacheSim/src/main.cpp">

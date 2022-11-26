@@ -1,31 +1,39 @@
 #include "Cache.h"
 
 Cache::Cache(unsigned int cacheSize, unsigned int blockSize, unsigned int associativity, bool lruCache,
-             unsigned int memBits): numLines(cacheSize / blockSize){
+             unsigned int memBits): numLines(cacheSize / blockSize), numSets(numLines / associativity) {
 
+    //Initialize member variables.
     this->cacheSize = cacheSize;
     this->blockSize = blockSize;
     this->associativity = associativity;
-
-    cacheLinesLru.resize(numLines);
-
     this->memBits = memBits;
     this->offsetBits = (unsigned int) log2(blockSize);
     this->tagBits = this->memBits - this->offsetBits;
-
     this->lruCache = lruCache;
-
-    //Initialize all lines' sets to 0.
-    for (CacheLine i : cacheLinesLru){
-        i.set = 0;
-        i.tag = 0;
-        i.lru = 0;
-        i.occupied = false;
-    }
-
     this->counter = 0;
     this->replacements = 0;
     this->hits = 0;
+
+    //Initialize the cache container.
+    for (unsigned int s = 0; s < numSets; s++) {
+        //Emplace an empty set containing the set number and an empty CacheLine vector.
+        pair<unsigned int, list<CacheLine>> emptySet = {s, list<CacheLine>()};
+        cacheLines.emplace(emptySet);
+
+        for (unsigned int l = 0; l < associativity; l++) {
+            //Push back an empty cache line per set line.
+            try {
+                cacheLines.at(s).emplace_back(CacheLine());
+            }
+
+            catch (out_of_range &out_of_range) {
+                cerr << "Could not create LRU Cache!" << endl;
+                cerr << out_of_range.what();
+                exit(1);
+            }
+        }
+    }
 }
 
 unsigned int Cache::getCacheSize() const{
@@ -42,6 +50,10 @@ unsigned int Cache::getAssociativity() const{
 
 unsigned int Cache::getNumLines() const{
     return numLines;
+}
+
+unsigned int Cache::getNumSets() const{
+    return numSets;
 }
 
 unsigned int Cache::getOffsetBits() const{
@@ -68,20 +80,102 @@ unsigned int Cache::getCounter() const{
     return counter;
 }
 
-unsigned int Cache::getLRUCount(unsigned int index) const{
-    return cacheLinesLru.at(index).lru;
+unsigned int Cache::getTag(unsigned int set, unsigned int line) const{
+    try {
+        auto iter = cacheLines.at(set).begin();
+        unsigned int i = 0;
+
+        while (iter != cacheLines.at(set).end() && i != line) {
+            iter++;
+            i++;
+        }
+
+        return iter->tag;
+    }
+
+    catch (out_of_range& out_of_range){
+        cerr << "Could not get the tag of item in set " << set << ", line " << line << endl;
+        cerr << out_of_range.what();
+        return 0;
+    }
 }
 
-unsigned int Cache::getTag(unsigned int index) const{
-    return cacheLinesLru.at(index).tag;
+unsigned int Cache::getLRUCount(unsigned int set, unsigned int line) const{
+    try {
+        auto iter = cacheLines.at(set).begin();
+        unsigned int i = 0;
+
+        while (iter != cacheLines.at(set).end() && i != line) {
+            iter++;
+            i++;
+        }
+
+        return iter->lru;
+    }
+
+    catch (out_of_range& out_of_range){
+        cerr << "Could not get the LRU counter of item in set " << set << ", line " << line << endl;
+        cerr << out_of_range.what();
+        return 0;
+    }
 }
 
-unsigned int Cache::getSet(unsigned int index) const{
-    return cacheLinesLru.at(index).set;
+bool Cache::isOccupied(unsigned int set, unsigned int line) const{
+    try {
+        auto iter = cacheLines.at(set).begin();
+        unsigned int i = 0;
+
+        while (iter != cacheLines.at(set).end() && i != line) {
+            iter++;
+            i++;
+        }
+
+        return iter->occupied;
+    }
+
+    catch (out_of_range& out_of_range){
+        cerr << "Could not get the occupation of item in set " << set << ", line " << line << endl;
+        cerr << out_of_range.what();
+        return true;
+    }
 }
 
-bool Cache::isOccupied(unsigned int index) const{
-    return cacheLinesLru.at(index).occupied;
+void Cache::addLine(unsigned int set, unsigned int tag, bool debug) {
+    try {
+        bool foundSpot = false;
+        unsigned int i = 0;
+
+        //Put the tag in the first available spot.
+        for (auto &iter: cacheLines.at(set)) {
+            if (!iter.occupied) {
+                if (debug) cout << "\tPlacing tag in index " << i << endl;
+
+                iter.tag = tag;
+                iter.occupied = true;
+                iter.lru = (++counter);
+
+                foundSpot = true;
+                break;
+            }
+            i++;
+        }
+
+        if (!foundSpot) {
+            if (debug) cout << "\tAll spots occupied! Replacing..." << endl;
+            replacements++;
+
+            if (lruCache) {
+                replaceLeastLRU(set, tag, debug);
+            } else {
+                replaceFIFO(set, tag, debug);
+            }
+        }
+    }
+
+    catch (out_of_range& out_of_range){
+        cerr << "Could not add line to cache in set " << set << " with tag " << tag << endl;
+        cerr << out_of_range.what();
+    }
 }
 
 string Cache::hexToBinString(const char& hex){
@@ -124,20 +218,54 @@ unsigned int Cache::binStringToInt(const string& bin){
     return value;
 }
 
-unsigned int Cache::findLeastLRU(bool debug) const{
-    unsigned int index = 0;
-    unsigned int leastLRU = UINT32_MAX;
+void Cache::replaceLeastLRU(unsigned int set, unsigned int tag, bool debug){
+    unsigned int line = 0, i = 0, leastLRU = UINT32_MAX;
 
-    for (unsigned int i = 0; i < numLines; i++){
-        if (cacheLinesLru.at(i).lru < leastLRU){
-            leastLRU = cacheLinesLru.at(i).lru;
-            index = i;
+    CacheLine* least;
+
+    try {
+        for (auto &iter: cacheLines.at(set)) {
+            if (iter.lru < leastLRU) {
+                leastLRU = iter.lru;
+                line = i;
+                least = &iter;
+            }
+            i++;
         }
+
+        if (debug) {
+            cout << "Smallest LRU in set " << set << " is " << leastLRU << " in line " << line << endl;
+            cout << "Replacing..." << endl;
+        }
+
+        least->tag = tag;
+        least->lru = ++counter;
     }
 
-    if (debug) cout << "Smallest LRU is " << leastLRU << " in index " << index << endl;
+    catch (out_of_range& out_of_range){
+        cerr << "Could not replace the item in LRU cache set " << set << " with tag " << tag << endl;
+        cerr << out_of_range.what();
+    }
+}
 
-    return index;
+void Cache::replaceFIFO(unsigned int set, unsigned int tag, bool debug){
+    try {
+        //Get the list we need to replace in.
+        list<CacheLine> &targetList = cacheLines.at(set);
+
+        if (debug) cout << "Replaced line with tag " << targetList.front().tag << " (should be the oldest)." << endl;
+
+        //Remove the front node (oldest).
+        targetList.pop_front();
+
+        //Add a new node in the front with the information we need.
+        targetList.emplace_back(CacheLine(tag, ++counter, true));
+    }
+
+    catch (out_of_range& out_of_range){
+        cerr << "Could not replace the item in FIFO cache set " << set << endl;
+        cerr << out_of_range.what();
+    }
 }
 
 void Cache::serialize(const std::string& csvFileName, bool overwrite){
@@ -146,7 +274,7 @@ void Cache::serialize(const std::string& csvFileName, bool overwrite){
     //Check for a csv extension.
     if (dataFile.path().extension() != ".csv"){
         cerr << "Improper file extension! The file name needs to have a .csv extension!";
-        return;
+        exit(1);
     }
 
     fstream file;

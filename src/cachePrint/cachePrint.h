@@ -51,9 +51,6 @@ const int widthBool = 3;
 //Reports the hits/misses and calculates the hit, miss ratio.
 void debugReport(const Cache &cache);
 
-//Prints all the lines in the cache.
-void printCache(const Cache& cache);
-
 //Prints all the lines in the cache in table form.
 void printCacheTable(const Cache& cache);
 

@@ -123,32 +123,32 @@ CacheSim/fast:
 	$(MAKE) -f CMakeFiles/CacheSim.dir/build.make CMakeFiles/CacheSim.dir/build
 .PHONY : CacheSim/fast
 
-src/cachePrint.o: src/cachePrint.cpp.o
+src/cachePrint/cachePrint.o: src/cachePrint/cachePrint.cpp.o
 
-.PHONY : src/cachePrint.o
+.PHONY : src/cachePrint/cachePrint.o
 
 # target to build an object file
-src/cachePrint.cpp.o:
-	$(MAKE) -f CMakeFiles/CacheSim.dir/build.make CMakeFiles/CacheSim.dir/src/cachePrint.cpp.o
-.PHONY : src/cachePrint.cpp.o
+src/cachePrint/cachePrint.cpp.o:
+	$(MAKE) -f CMakeFiles/CacheSim.dir/build.make CMakeFiles/CacheSim.dir/src/cachePrint/cachePrint.cpp.o
+.PHONY : src/cachePrint/cachePrint.cpp.o
 
-src/cachePrint.i: src/cachePrint.cpp.i
+src/cachePrint/cachePrint.i: src/cachePrint/cachePrint.cpp.i
 
-.PHONY : src/cachePrint.i
+.PHONY : src/cachePrint/cachePrint.i
 
 # target to preprocess a source file
-src/cachePrint.cpp.i:
-	$(MAKE) -f CMakeFiles/CacheSim.dir/build.make CMakeFiles/CacheSim.dir/src/cachePrint.cpp.i
-.PHONY : src/cachePrint.cpp.i
+src/cachePrint/cachePrint.cpp.i:
+	$(MAKE) -f CMakeFiles/CacheSim.dir/build.make CMakeFiles/CacheSim.dir/src/cachePrint/cachePrint.cpp.i
+.PHONY : src/cachePrint/cachePrint.cpp.i
 
-src/cachePrint.s: src/cachePrint.cpp.s
+src/cachePrint/cachePrint.s: src/cachePrint/cachePrint.cpp.s
 
-.PHONY : src/cachePrint.s
+.PHONY : src/cachePrint/cachePrint.s
 
 # target to generate assembly for a file
-src/cachePrint.cpp.s:
-	$(MAKE) -f CMakeFiles/CacheSim.dir/build.make CMakeFiles/CacheSim.dir/src/cachePrint.cpp.s
-.PHONY : src/cachePrint.cpp.s
+src/cachePrint/cachePrint.cpp.s:
+	$(MAKE) -f CMakeFiles/CacheSim.dir/build.make CMakeFiles/CacheSim.dir/src/cachePrint/cachePrint.cpp.s
+.PHONY : src/cachePrint/cachePrint.cpp.s
 
 src/cachetypes/FullyAssociative.o: src/cachetypes/FullyAssociative.cpp.o
 
@@ -177,6 +177,33 @@ src/cachetypes/FullyAssociative.cpp.s:
 	$(MAKE) -f CMakeFiles/CacheSim.dir/build.make CMakeFiles/CacheSim.dir/src/cachetypes/FullyAssociative.cpp.s
 .PHONY : src/cachetypes/FullyAssociative.cpp.s
 
+src/cachetypes/SetAssociative.o: src/cachetypes/SetAssociative.cpp.o
+
+.PHONY : src/cachetypes/SetAssociative.o
+
+# target to build an object file
+src/cachetypes/SetAssociative.cpp.o:
+	$(MAKE) -f CMakeFiles/CacheSim.dir/build.make CMakeFiles/CacheSim.dir/src/cachetypes/SetAssociative.cpp.o
+.PHONY : src/cachetypes/SetAssociative.cpp.o
+
+src/cachetypes/SetAssociative.i: src/cachetypes/SetAssociative.cpp.i
+
+.PHONY : src/cachetypes/SetAssociative.i
+
+# target to preprocess a source file
+src/cachetypes/SetAssociative.cpp.i:
+	$(MAKE) -f CMakeFiles/CacheSim.dir/build.make CMakeFiles/CacheSim.dir/src/cachetypes/SetAssociative.cpp.i
+.PHONY : src/cachetypes/SetAssociative.cpp.i
+
+src/cachetypes/SetAssociative.s: src/cachetypes/SetAssociative.cpp.s
+
+.PHONY : src/cachetypes/SetAssociative.s
+
+# target to generate assembly for a file
+src/cachetypes/SetAssociative.cpp.s:
+	$(MAKE) -f CMakeFiles/CacheSim.dir/build.make CMakeFiles/CacheSim.dir/src/cachetypes/SetAssociative.cpp.s
+.PHONY : src/cachetypes/SetAssociative.cpp.s
+
 src/cachetypes/parent/Cache.o: src/cachetypes/parent/Cache.cpp.o
 
 .PHONY : src/cachetypes/parent/Cache.o
@@ -203,6 +230,33 @@ src/cachetypes/parent/Cache.s: src/cachetypes/parent/Cache.cpp.s
 src/cachetypes/parent/Cache.cpp.s:
 	$(MAKE) -f CMakeFiles/CacheSim.dir/build.make CMakeFiles/CacheSim.dir/src/cachetypes/parent/Cache.cpp.s
 .PHONY : src/cachetypes/parent/Cache.cpp.s
+
+src/help/help.o: src/help/help.cpp.o
+
+.PHONY : src/help/help.o
+
+# target to build an object file
+src/help/help.cpp.o:
+	$(MAKE) -f CMakeFiles/CacheSim.dir/build.make CMakeFiles/CacheSim.dir/src/help/help.cpp.o
+.PHONY : src/help/help.cpp.o
+
+src/help/help.i: src/help/help.cpp.i
+
+.PHONY : src/help/help.i
+
+# target to preprocess a source file
+src/help/help.cpp.i:
+	$(MAKE) -f CMakeFiles/CacheSim.dir/build.make CMakeFiles/CacheSim.dir/src/help/help.cpp.i
+.PHONY : src/help/help.cpp.i
+
+src/help/help.s: src/help/help.cpp.s
+
+.PHONY : src/help/help.s
+
+# target to generate assembly for a file
+src/help/help.cpp.s:
+	$(MAKE) -f CMakeFiles/CacheSim.dir/build.make CMakeFiles/CacheSim.dir/src/help/help.cpp.s
+.PHONY : src/help/help.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -267,15 +321,21 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... CacheSim"
-	@echo "... src/cachePrint.o"
-	@echo "... src/cachePrint.i"
-	@echo "... src/cachePrint.s"
+	@echo "... src/cachePrint/cachePrint.o"
+	@echo "... src/cachePrint/cachePrint.i"
+	@echo "... src/cachePrint/cachePrint.s"
 	@echo "... src/cachetypes/FullyAssociative.o"
 	@echo "... src/cachetypes/FullyAssociative.i"
 	@echo "... src/cachetypes/FullyAssociative.s"
+	@echo "... src/cachetypes/SetAssociative.o"
+	@echo "... src/cachetypes/SetAssociative.i"
+	@echo "... src/cachetypes/SetAssociative.s"
 	@echo "... src/cachetypes/parent/Cache.o"
 	@echo "... src/cachetypes/parent/Cache.i"
 	@echo "... src/cachetypes/parent/Cache.s"
+	@echo "... src/help/help.o"
+	@echo "... src/help/help.i"
+	@echo "... src/help/help.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

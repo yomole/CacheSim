@@ -13,8 +13,8 @@
 #include <iostream>
 #include <string>
 #include <cmath>
-#include <vector>
-#include <queue>
+#include <list>
+#include <map>
 #include <filesystem>
 #include <fstream>
 
@@ -29,9 +29,13 @@ using std::cout;
 using std::endl;
 using std::stoi;
 using std::pow;
-using std::vector;
-using std::queue;
+using std::list;
 using std::fstream;
+using std::map;
+using std::iterator;
+using std::pair;
+using std::exception;
+using std::out_of_range;
 
 using fs::directory_entry;
 using fs::directory_iterator;
@@ -42,6 +46,11 @@ using fs::filesystem_error;
 #ifndef CACHESIM_CACHE_H
 #define CACHESIM_CACHE_H
 
+//----------
+// CONSTANTS
+//----------
+const unsigned int MEMBITS = 32;
+
 class Cache {
 
 protected:
@@ -51,6 +60,7 @@ protected:
     unsigned int associativity{};
 
     const unsigned int numLines = 0;
+    const unsigned int numSets = 0;
 
     unsigned int offsetBits{};
     unsigned int tagBits{};
@@ -63,40 +73,65 @@ protected:
     bool lruCache;
 
     struct CacheLine{
-        unsigned int set = 0;
-        unsigned int tag = 0;
-        unsigned int lru = 0;
-        bool occupied = false;
+        unsigned int tag;
+        unsigned int lru;
+        bool occupied;
+
+        CacheLine(){
+            tag = 0;
+            lru = 0;
+            occupied = false;
+        }
+
+        CacheLine(unsigned int tag, unsigned int lru, bool occupied){
+            this->tag = tag;
+            this->lru = lru;
+            this->occupied = occupied;
+        }
     };
 
-    vector<CacheLine> cacheLinesLru;
-    queue<CacheLine> cacheLinesFifo;
+    map<unsigned int, list<CacheLine>> cacheLines;
+
+    //Checks to see if a tag exists in a set. Returns a reference to the iterator if successful. otherwise, end iterator.
+    list<CacheLine>::iterator tagExists(unsigned int set, unsigned int &tag){
+        for (auto iter = cacheLines.at(set).begin(); iter != cacheLines.at(set).end(); iter++){
+            if (iter->tag == tag && iter->occupied){
+                return iter;
+            }
+        }
+        return cacheLines.at(set).end();
+    }
 
 public:
 
-    explicit Cache(unsigned int cacheSize, unsigned int blockSize, unsigned int associativity, bool lruCache = true,
-                   unsigned int memBits = 32);
+    Cache(unsigned int cacheSize, unsigned int blockSize, unsigned int associativity, bool lruCache = true,
+          unsigned int memBits = 32);
 
     //Getters:
+
     unsigned int getCacheSize() const;
     unsigned int getBlockSize() const;
     unsigned int getAssociativity() const;
     unsigned int getNumLines() const;
+    unsigned int getNumSets() const;
     unsigned int getOffsetBits() const;
     unsigned int getTagBits() const;
     unsigned int getMemBits() const;
     unsigned int getHits() const;
     unsigned int getReplacements() const;
     unsigned int getCounter() const;
-    unsigned int getTag(unsigned int index) const;
-    unsigned int getSet(unsigned int index) const;
-    unsigned int getLRUCount(unsigned int index) const;
-    bool isOccupied(unsigned int index) const;
+
+    unsigned int getTag(unsigned int set, unsigned int line) const;
+    unsigned int getLRUCount(unsigned int set, unsigned int line) const;
+    bool isOccupied(unsigned int set, unsigned int line) const;
 
     //Class Functions:
 
     //Processes a memory request.
-    virtual void processRequest(const string& memAddress, bool debug = false) = 0;
+    virtual void processRequest(const string& memAddress, bool debug) = 0;
+
+    //Adds a line to the cache.
+    void addLine(unsigned int set, unsigned int tag, bool debug = false);
 
     //Converts a hex string to a binary string.
     static string hexToBinString(const char& hex);
@@ -104,8 +139,11 @@ public:
     //Converts a binary string into an integer.
     static unsigned int binStringToInt(const string& bin);
 
-    //Returns the index of the smallest LRU cache line.
-    unsigned int findLeastLRU(bool debug = false) const;
+    //Replaces the cache line in a set with the smallest lru.
+    void replaceLeastLRU(unsigned int set, unsigned int tag, bool debug = false);
+
+    //Replaces the oldest cache line.
+    void replaceFIFO(unsigned int set, unsigned int tag, bool debug = false);
 
     //Exports the cache data to a csv file.
     void serialize(const string& csvFileName, bool overwrite = false);

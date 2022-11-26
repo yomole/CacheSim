@@ -15,10 +15,11 @@ set(CACHEFILES
         src/cachetypes/FullyAssociative.cpp
         src/tracehandler/Tracehandler.cpp
         src/tracehandler/Tracehandler.h
-        src/cachePrint.h
-        src/cachePrint.cpp)
+        src/cachePrint/cachePrint.h
+        src/cachePrint/cachePrint.cpp src/cachetypes/SetAssociative.cpp src/cachetypes/SetAssociative.h src/help/help.h src/help/help.cpp)
 
 set(TEST src/test/test.cpp)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 add_executable(CacheSim ${CACHEFILES} ${MAIN})
+target_link_options(CacheSim PRIVATE -static)

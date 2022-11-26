@@ -45,7 +45,7 @@ using fs::filesystem_error;
 //----------
 // CONSTANTS
 //----------
-static const string_view DEFAULT_TRACE_DIR = "../traces/";
+static const string_view DEFAULT_TRACE_DIR = "traces/";
 static const string_view DEFAULT_TRACE_EXTENSION = ".trace";
 
 #ifndef CACHESIM_TRACEHANDLER_H
