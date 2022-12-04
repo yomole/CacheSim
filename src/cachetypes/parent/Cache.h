@@ -15,13 +15,13 @@
 #include <cmath>
 #include <list>
 #include <map>
-#include <filesystem>
+#include <experimental/filesystem>
 #include <fstream>
 
 //-----------------
 // USING STATEMENTS
 //-----------------
-namespace fs = std::filesystem;
+namespace fs = std::experimental::filesystem;
 
 using std::string;
 using std::cerr;
@@ -63,6 +63,7 @@ protected:
     const unsigned int numSets = 0;
 
     unsigned int offsetBits{};
+    unsigned int setBits{};
     unsigned int tagBits{};
     unsigned int memBits{};
 
@@ -115,6 +116,7 @@ public:
     unsigned int getNumLines() const;
     unsigned int getNumSets() const;
     unsigned int getOffsetBits() const;
+    unsigned int getSetBits() const;
     unsigned int getTagBits() const;
     unsigned int getMemBits() const;
     unsigned int getHits() const;

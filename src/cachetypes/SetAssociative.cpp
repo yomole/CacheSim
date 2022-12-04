@@ -1,7 +1,3 @@
-//
-// Created by molyo on 11/22/2022.
-//
-
 #include "SetAssociative.h"
 
 SetAssociative::SetAssociative(unsigned int cacheSize, unsigned int blockSize, unsigned int associativity, bool lruCache,
@@ -20,10 +16,10 @@ void SetAssociative::processRequest(const std::string &memAddress, bool debug){
 
     //Grab the characters for the bits needed and convert the substring into a number.
     unsigned int tag = binStringToInt(binAddress.substr(0, tagBits));
-    unsigned int set = binStringToInt(binAddress.substr(tagBits, (unsigned int) log2(numLines / associativity)));
+    unsigned int set = binStringToInt(binAddress.substr(tagBits, setBits));
 
-    if (debug) cout << "\tTag Value: " << tag << endl;
-    if (debug) cout << "\tSet Value: " << set << endl;
+    if (debug) cout << "\tTag Value: " << tag << " (" << tagBits << " bits)" << endl;
+    if (debug) cout << "\tSet Value: " << set << " (" << setBits << " bits)" << endl;
 
     //Check if the tag exists.
     try{

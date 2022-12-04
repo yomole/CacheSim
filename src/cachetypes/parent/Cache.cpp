@@ -9,7 +9,8 @@ Cache::Cache(unsigned int cacheSize, unsigned int blockSize, unsigned int associ
     this->associativity = associativity;
     this->memBits = memBits;
     this->offsetBits = (unsigned int) log2(blockSize);
-    this->tagBits = this->memBits - this->offsetBits;
+    this->setBits = (unsigned int) log2(numLines / associativity);
+    this->tagBits = this->memBits - this->offsetBits - this->setBits;
     this->lruCache = lruCache;
     this->counter = 0;
     this->replacements = 0;
@@ -58,6 +59,10 @@ unsigned int Cache::getNumSets() const{
 
 unsigned int Cache::getOffsetBits() const{
     return offsetBits;
+}
+
+unsigned int Cache::getSetBits() const{
+    return setBits;
 }
 
 unsigned int Cache::getTagBits() const{
@@ -306,12 +311,13 @@ void Cache::serialize(const std::string& csvFileName, bool overwrite){
 
         if (line.empty()){
             //Make the headings.
-            file << "cache_size,block_size,associativity,lru_fifo,num_lines,hits,misses,replacements,num_requests" << endl;
+            file << "cache_size,block_size,associativity,lru_fifo,num_lines,hits,misses,replacements,hit_rate,num_requests" << endl;
         }
 
         //Output the data for the current cache.
         file << cacheSize << "," << blockSize << "," << associativity << "," << (lruCache ? "lru" : "fifo") << "," <<
-        numLines << "," << hits << "," << (counter - hits) << "," << replacements << "," << counter << endl;
+        numLines << "," << hits << "," << (counter - hits) << "," << replacements << "," << ((float) hits)/ ((float)counter) << ","
+        << counter << endl;
     }
 
     else{

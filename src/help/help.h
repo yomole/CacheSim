@@ -33,7 +33,7 @@ using std::string_view;
 //----------
 // CONSTANTS
 //----------
-const string_view VERSION = "1.0.0";
+const string_view VERSION = "1.0.1";
 
 //-------------
 // ENUMERATIONS

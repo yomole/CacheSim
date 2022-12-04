@@ -11,8 +11,6 @@ set(MAIN src/main.cpp)
 set(CACHEFILES
         src/cachetypes/parent/Cache.cpp
         src/cachetypes/parent/Cache.h
-        src/cachetypes/FullyAssociative.h
-        src/cachetypes/FullyAssociative.cpp
         src/tracehandler/Tracehandler.cpp
         src/tracehandler/Tracehandler.h
         src/cachePrint/cachePrint.h

@@ -15,10 +15,9 @@
 #include <vector>
 #include <string>
 
-#include "cachetypes/FullyAssociative.h"
 #include "tracehandler/Tracehandler.h"
 #include "cachePrint/cachePrint.h"
-#include "SetAssociative.h"
+#include "cachetypes/SetAssociative.h"
 #include "help/help.h"
 
 //-----------------
@@ -101,6 +100,7 @@ int main(int argc, char* argv[]){
             //Check if line by line mode was requested.
             bool lbl = (processed.find(LBL) != processed.end());
             bool lbltemp = lbl;
+            bool silent = (processed.find(SILENT) != processed.end());
             string fileName = processed.find(EXPORT)->second.at(0);
 
             tracehandler.readFile(processed.find(SETFILE)->second.at(0));
@@ -135,28 +135,37 @@ int main(int argc, char* argv[]){
                                         throw invalid_argument("Number of sets would be smaller than 1!");
                                     }
 
-                                    cout << "(" << sim << "/" << numSims << ") RUNNING CacheSim simulation with:" << endl;
-                                    cout << "\tMemory bits: " << mb << endl;
-                                    cout << "\tLRU Cache: " << (lruCache ? "TRUE" : "FALSE") << endl;
-                                    cout << "\tCache Size: " << cs << endl;
-                                    cout << "\tBlock Size: " << bs << endl;
-                                    cout << "\tAssociativity: " << as << endl;
-                                    cout << "\tFile: " << processed.find(SETFILE)->second.at(0) << endl;
-                                    cout << endl;
+                                    if (!silent) {
+                                        cout << "(" << sim << "/" << numSims << ") RUNNING CacheSim simulation with:"
+                                             << endl;
+                                        cout << "\tMemory bits: " << mb << endl;
+                                        cout << "\tLRU Cache: " << (lruCache ? "TRUE" : "FALSE") << endl;
+                                        cout << "\tCache Size: " << cs << endl;
+                                        cout << "\tBlock Size: " << bs << endl;
+                                        cout << "\tAssociativity: " << as << endl;
+                                        cout << "\tFile: " << processed.find(SETFILE)->second.at(0) << endl;
+                                        cout << endl;
+                                    }
+                                    else{
+                                        printf("Running...(%u/%u)\r", sim, numSims);
+                                    }
                                 }
 
                                 catch (exception& exception){
-                                    cerr << "(" << sim << "/" << numSims << ") SKIPPING CacheSim simulation with:" << endl;
-                                    cerr << "\tMemory bits: " << mb << endl;
-                                    cerr << "\tLRU Cache: " << (lruCache ? "TRUE" : "FALSE") << endl;
-                                    cerr << "\tCache Size: " << cs << endl;
-                                    cerr << "\tBlock Size: " << bs << endl;
-                                    cerr << "\tAssociativity: " << as << endl;
-                                    cerr << "\tFile: " << processed.find(SETFILE)->second.at(0) << endl;
-                                    cerr << endl;
-                                    cerr << "Exception Details:" << endl;
-                                    cerr << string(exception.what()) << endl;
-                                    cerr << endl;
+                                    if (!silent) {
+                                        cerr << "(" << sim << "/" << numSims << ") SKIPPING CacheSim simulation with:"
+                                             << endl;
+                                        cerr << "\tMemory bits: " << mb << endl;
+                                        cerr << "\tLRU Cache: " << (lruCache ? "TRUE" : "FALSE") << endl;
+                                        cerr << "\tCache Size: " << cs << endl;
+                                        cerr << "\tBlock Size: " << bs << endl;
+                                        cerr << "\tAssociativity: " << as << endl;
+                                        cerr << "\tFile: " << processed.find(SETFILE)->second.at(0) << endl;
+                                        cerr << endl;
+                                        cerr << "Exception Details:" << endl;
+                                        cerr << string(exception.what()) << endl;
+                                        cerr << endl;
+                                    }
                                     sim++;
                                     continue;
                                 }
@@ -168,7 +177,7 @@ int main(int argc, char* argv[]){
                                 bool debug = false;
                                 for (const string& i : tracehandler.getAddresses()) {
                                     //Process any line by line commands, if the mode is active.
-                                    if (lbltemp){
+                                    if (lbltemp && !silent){
                                         do {
                                             debug = true;
                                             getline(cin, input);
@@ -201,7 +210,9 @@ int main(int argc, char* argv[]){
                                     testingCache.processRequest(i, debug);
                                 }
 
-                                cout << endl;
+                                if (!silent) {
+                                    cout << endl;
+                                }
 
                                 testingCache.serialize(string(DEFAULT_DATA_DIR) + fileName);
                                 sim++;
