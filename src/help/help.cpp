@@ -21,7 +21,7 @@ void printHelp(Commands command){
 
         case LBL:{
             cout << "\t\tRuns the simulation in line by line mode." << endl;
-            cout << "\t\t\tLine by line mode has a similar interface to gdb. Enter \'h\' during the simulation for commands." << endl;
+            cout << "\t\t\tLine by line mode has a similar interface to gdb. Enter \'l\' during the simulation for commands." << endl;
             break;
         }
 

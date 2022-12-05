@@ -11,7 +11,7 @@
 //----------
 
 #include <vector>
-#include <experimental/filesystem>
+#include <filesystem>
 #include <string>
 #include <iostream>
 #include <unordered_map>
@@ -21,7 +21,7 @@
 // USING STATEMENTS
 //-----------------
 
-namespace fs = std::experimental::filesystem;
+namespace fs = std::filesystem;
 
 using std::vector;
 using std::string;
